@@ -17,6 +17,20 @@ const getDepartmentById = (req, res) => {
         res.status(200).json(results.rows);
     });
 }
+const getFullHodById = (req, res) => {
+    const id = req.params.id;
+    pool.query(queries.getFullHodQuery, [id], (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    });
+};
+const getFullPlById = (req, res) => {
+    const id = req.params.id;
+    pool.query(queries.getFullplQuery, [id], (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    });
+};
 
 const getfullDepartmentById = (req, res) => {
     const id = req.params.id;
@@ -38,6 +52,20 @@ const getfullDepartmentById = (req, res) => {
                 });
             })
             
+        });
+    });
+}
+const getfullProgrammeById = (req, res) =>{
+    const id = req.params.id;
+    pool.query(queries.getProgrammeByPid, [id], (error, Programmeresults)=>{
+        if (error) throw error;
+        const staffid = Programmeresults.rows[0].pl_id;
+        pool.query(queries.getStaffById, [staffid], (error, StaffResults) =>{
+            if (error) throw error;
+            res.status(200).json({
+                programme : Programmeresults.rows,
+                staff: StaffResults.rows,
+            });
         });
     });
 }
@@ -203,5 +231,8 @@ module.exports = {
     getModules,
     getElectives,
     getModulesBySemester,
+    getfullProgrammeById,
+    getFullHodById,
+    getFullPlById,
 
 }

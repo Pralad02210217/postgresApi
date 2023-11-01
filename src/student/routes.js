@@ -10,10 +10,13 @@ router.get('/departmenthod/:id', controller.getHeadOfDepartment);
 router.get('/staff/:id', controller.getStaffById);
 router.get('/staff/department/:id', controller.getStaffByDepartment);
 router.get('/programme/:id', controller.getProgrammeById);
+router.get('/programmedetails/:id', controller.getfullProgrammeById);
 router.get('/programme/pl/:id', controller.getProgramLeader);
 router.get('/modules/:id', controller.getModules);
 router.get('/modules/:id/:semno', controller.getModulesBySemester);
 router.get('/electives/:id', controller.getElectives);
+router.get('/department/fullHod/:id', controller.getFullHodById);
+router.get('/programme/fullPl/:id', controller.getFullPlById);
 
 
 
