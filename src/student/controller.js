@@ -60,12 +60,17 @@ const getfullProgrammeById = (req, res) =>{
     pool.query(queries.getProgrammeByPid, [id], (error, Programmeresults)=>{
         if (error) throw error;
         const staffid = Programmeresults.rows[0].pl_id;
+        const deptid = Programmeresults.rows[0].deptid;
         pool.query(queries.getStaffById, [staffid], (error, StaffResults) =>{
-            if (error) throw error;
-            res.status(200).json({
-                programme : Programmeresults.rows,
-                staff: StaffResults.rows,
-            });
+            if (error) throw error; 
+            pool.query(queries.getDepartmentById, [deptid], (error, departmentResults)=>{
+                if (error) throw error
+                res.status(200).json({
+                    Programme : Programmeresults.rows,
+                    staff: StaffResults.rows,
+                    department: departmentResults.rows,
+                })
+            })
         });
     });
 }
