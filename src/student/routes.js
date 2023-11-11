@@ -18,6 +18,8 @@ router.get('/electives/:id', controller.getElectives);
 router.get('/department/fullHod/:id', controller.getFullHodById);
 router.get('/programme/fullPl/:id', controller.getFullPlById);
 
+router.delete('/staff/delete/:id', controller.removeStaff);
+
 
 
 // router.get('/',controller.getStudents);

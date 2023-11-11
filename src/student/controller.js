@@ -106,6 +106,20 @@ const getStaffById =(req, res) =>{
         res.status(200).json(results.rows);
     })
 }
+const removeStaff = (req, res) =>{
+    const id = req.params.id;
+    pool.query(queries.getStaffById , [id], (error, results) =>{
+        const noStaffFound = !results.rows.length;
+        if (noStaffFound){
+            res.send("Staff does not exist in the database, could not remove it");
+        }
+
+        pool.query(queries.removeStaff, [id], (error, results) =>{
+            if (error) throw error;
+            res.status(200).send("Staff removed Successfully");
+        })
+    });
+}
 
 const getProgramLeader = (req, res) =>{
     const id = req.params.id;
@@ -239,5 +253,6 @@ module.exports = {
     getfullProgrammeById,
     getFullHodById,
     getFullPlById,
+    removeStaff,
 
 }

@@ -14,6 +14,8 @@ const getElectives = "SELECT * FROM elective WHERE pid = $1";
 const getFullHodQuery = 'SELECT dh.*, s.* FROM department_hod dh JOIN staff s ON dh.staffid = s.sid WHERE dh.deptid = $1';
 const getFullplQuery = 'SELECT dh.*, s.* FROM programme_leader dh JOIN staff s ON dh.staffid = s.sid WHERE dh.pid = $1';
 
+const removeStaff = "DELETE FROM staff WHERE sid = $1";
+
 // const getStudents = "SELECT * FROM student";
 // const getStudentById = "SELECT * FROM student WHERE ID = $1";
 // const checkEmailExists = "SELECT COUNT(*) FROM student WHERE email = $1";
@@ -36,5 +38,6 @@ module.exports = {
     getProgrammeByPid,
     getFullHodQuery,
     getFullplQuery,
+    removeStaff,
 
 }
