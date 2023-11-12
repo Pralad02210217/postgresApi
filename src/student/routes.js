@@ -17,8 +17,14 @@ router.get('/modules/:id/:semno', controller.getModulesBySemester);
 router.get('/electives/:id', controller.getElectives);
 router.get('/department/fullHod/:id', controller.getFullHodById);
 router.get('/programme/fullPl/:id', controller.getFullPlById);
-
+router.post('/department/addStaff', controller.addStaff);
+router.post('/department/HOD', controller.addHoD);
+router.post('/programme/PL', controller.addPL);
+router.post('/login', controller.checkLogin);
+router.get('/login/:name/:password', controller.checkLogin);
 router.delete('/staff/delete/:id', controller.removeStaff);
+router.delete('/department/removeHoD/:id', controller.removeHoD);
+router.delete('/programme/removePL/:id', controller.removePL);
 
 
 

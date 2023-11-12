@@ -15,10 +15,15 @@ const getFullHodQuery = 'SELECT dh.*, s.* FROM department_hod dh JOIN staff s ON
 const getFullplQuery = 'SELECT dh.*, s.* FROM programme_leader dh JOIN staff s ON dh.staffid = s.sid WHERE dh.pid = $1';
 
 const removeStaff = "DELETE FROM staff WHERE sid = $1";
-
+const addStaff ="INSERT INTO staff (sid, name, designation, email, imageurl,deptno) VALUES ($1, $2, $3, $4, $5, $6)";
+const addHoD = "INSERT INTO department_hod (deptid, staffid, starting_tenure, ending_tenure) VALUES ($1,$2,$3,$4)";
+const removeHoD = "DELETE FROM department_hod where staffid = $1";
+const addPL = "INSERT INTO programme_leader (deptid, pid, staffid, starting_tenure, ending_tenure) VALUES ($1, $2, $3, $4, $5)";
+const removePL = "DELETE FROM programme_leader where staffid = $1";
+const checkLogin = "SELECT * FROM student WHERE name = $1 AND password = $2";
 // const getStudents = "SELECT * FROM student";
 // const getStudentById = "SELECT * FROM student WHERE ID = $1";
-// const checkEmailExists = "SELECT COUNT(*) FROM student WHERE email = $1";
+const checkEmailExists = "SELECT COUNT(*) FROM staff WHERE email = $1";
 // const addStudent = "INSERT INTO student (name,email, dob) VALUES($1, $2, $3)";
 // const removeStudent = "DELETE FROM student WHERE ID = $1";
 // const updateStudent = "UPDATE student SET name = $1 WHERE id = $2";
@@ -39,5 +44,12 @@ module.exports = {
     getFullHodQuery,
     getFullplQuery,
     removeStaff,
+    addStaff,
+    checkEmailExists,
+    addHoD,
+    removeHoD,
+    addPL,
+    removePL,
+    checkLogin,
 
 }
