@@ -106,6 +106,13 @@ const getStaffById =(req, res) =>{
         res.status(200).json(results.rows);
     })
 }
+
+const getCurrentUser = (req, res) =>{
+    pool.query(queries.currentUser, (error, results)=>{
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    })
+}
 const removeStaff = (req, res) =>{
     const id = req.params.id;
     pool.query(queries.getStaffById , [id], (error, results) =>{
@@ -175,6 +182,13 @@ const addHoD =(req,res)=>{
         }
         res.status(201).json({message: "HoD added successfully"});
     });
+}
+const addLogin = (req, res) =>{
+    const id = req.params.id;
+    pool.query(queries.addLogin, [id], (error, results)=>{
+        if (error) throw error;
+        res.status(200).json("User added successfully to login");
+    })
 }
 
 const removeHoD = (req, res) =>{
@@ -423,5 +437,7 @@ module.exports = {
     removeModule,
     addElective,
     removeElective,
+    addLogin,
+    getCurrentUser,
 
 }

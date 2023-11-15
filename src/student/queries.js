@@ -25,9 +25,11 @@ const addModule  ="INSERT INTO module (mid, mname, module_credit, lecture_hour, 
 const deleteModule = "DELETE FROM module where mid = $1";
 const addElective = "Insert INTO elective (eid,pid,mcode,ename,specilization) Values($1, $2, $3, $4, $5)";
 const deleteElective = "DELETE From elective where mcode = $1";
+const currentUser = "SELECT * FROM login ORDER BY user_id DESC LIMIT 1;"
 // const getStudents = "SELECT * FROM student";
 // const getStudentById = "SELECT * FROM student WHERE ID = $1";
 const checkEmailExists = "SELECT COUNT(*) FROM staff WHERE email = $1";
+const addLogin = "INSERT into login (username) Values($1)";
 // const addStudent = "INSERT INTO student (name,email, dob) VALUES($1, $2, $3)";
 // const removeStudent = "DELETE FROM student WHERE ID = $1";
 // const updateStudent = "UPDATE student SET name = $1 WHERE id = $2";
@@ -59,5 +61,7 @@ module.exports = {
     deleteModule,
     addElective,
     deleteElective,
+    addLogin,
+    currentUser,
 
 }
