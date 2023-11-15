@@ -18,7 +18,7 @@ router.get('/electives/:id', controller.getElectives);
 router.get('/department/fullHod/:id', controller.getFullHodById);
 router.get('/programme/fullPl/:id', controller.getFullPlById);
 router.post('/department/addStaff', controller.addStaff);
-router.get('/addLogin/:id', controller.addLogin);
+router.post('/addLogin/', controller.addLogin);
 router.get('/currentUser', controller.getCurrentUser);
 router.post('/department/HOD', controller.addHoD);
 router.post('/programme/PL', controller.addPL);

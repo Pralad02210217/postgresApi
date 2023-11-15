@@ -183,13 +183,21 @@ const addHoD =(req,res)=>{
         res.status(201).json({message: "HoD added successfully"});
     });
 }
-const addLogin = (req, res) =>{
-    const id = req.params.id;
-    pool.query(queries.addLogin, [id], (error, results)=>{
-        if (error) throw error;
-        res.status(200).json("User added successfully to login");
-    })
-}
+const addLogin = (req, res) => {
+    const { username } = req.body[0]; // Extract username from the request body
+    console.log(username); // Check if the username is correctly extracted
+  
+    pool.query(queries.addLogin, [username], (error, results) => {
+      if (error) {
+        // Log the error for debugging purposes
+        console.error('Error adding user to login:', error);
+        return res.status(500).json({ error: 'Error adding user to login' });
+      }
+  
+      res.status(200).json('User added successfully to login');
+    });
+  };
+  
 
 const removeHoD = (req, res) =>{
     const id = req.params.id;
