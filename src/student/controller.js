@@ -203,6 +203,32 @@ const addPL =(req,res)=>{
         res.status(201).json({message: "PL added successfully"});
     });
 }
+
+const addModule =(req, res)=>{
+    const {mid, mname, module_credit, lecture_hour, tutorial_hour, practical_hour, theory_ca_marks, theory_exam_marks, practical_ca_marks, semno,module_owner, module_coordinator, pid, borrowed_module} = req.body[0];
+    const newmodule_credit = parseInt(module_credit,10)
+    const newlecture_hour = parseInt(lecture_hour,10)
+    const newtutorail_hour = parseInt(tutorial_hour,10)
+    const newpractical_hour = parseInt(practical_hour,10)
+    const newtheory_ca_marks = parseInt(theory_ca_marks, 10)
+    const newthoery_exam_marks = parseInt(theory_exam_marks, 10)
+    const newpractical_ca_marks = parseInt(practical_ca_marks,10)
+    const newsemno = parseInt(semno, 10)
+    pool.query(queries.addModule,[mid, mname, newmodule_credit, newlecture_hour, newtutorail_hour, newpractical_hour, newtheory_ca_marks, newthoery_exam_marks, newpractical_ca_marks, newsemno,module_owner, module_coordinator, pid, borrowed_module], (error, results)=>{
+        if (error){
+            console.log("Error adding Moduel", error);
+            return res.status(500).json({error: "Error in database while adding Module"})
+        }
+        res.status(201).json({message: "Module Added successfully"});
+    })
+}
+const addElective = (req, res) =>{
+    const {eid, pid, mcode, ename, specilization} = req.body[0];
+    pool.query(queries.addElective, [eid,pid,mcode,ename,specilization], (error, results)=>{
+        if (error) throw error;
+        res.status(201).json({message:"Elective Added Successfully" });
+    })
+}
 const removePL = (req, res) =>{
     const id = req.params.id;
     pool.query(queries.getStaffById , [id], (error, results) =>{
@@ -216,6 +242,22 @@ const removePL = (req, res) =>{
             res.status(200).send("PL removed Successfully");
         })
     });
+}
+const removeModule = (req, res) =>{
+    const id = req.params.id;
+    console.log(id);
+    pool.query(queries.deleteModule, [id], (error, results) =>{
+        if (error) throw error;
+        res.status(200).send("Module removed Successfully");
+    })
+}
+
+const removeElective = (req,res) =>{
+    const id = req.params.id;
+    pool.query(queries.deleteElective, [id], (error, results)=>{
+        if (error) throw error;
+        res.status(200).send("Elective removed Successfully");
+    })
 }
 
 const checkLogin = (req, res) => {
@@ -377,5 +419,9 @@ module.exports = {
     addPL,
     removePL,
     checkLogin,
+    addModule,
+    removeModule,
+    addElective,
+    removeElective,
 
 }

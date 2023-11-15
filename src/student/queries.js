@@ -21,6 +21,10 @@ const removeHoD = "DELETE FROM department_hod where staffid = $1";
 const addPL = "INSERT INTO programme_leader (deptid, pid, staffid, starting_tenure, ending_tenure) VALUES ($1, $2, $3, $4, $5)";
 const removePL = "DELETE FROM programme_leader where staffid = $1";
 const checkLogin = "SELECT * FROM student WHERE name = $1 AND password = $2";
+const addModule  ="INSERT INTO module (mid, mname, module_credit, lecture_hour, tutorial_hour, practical_hour, theory_ca_marks, theory_exam_marks, practical_ca_marks, semno,module_owner, module_coordinator, pid, borrowed_module) Values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)";
+const deleteModule = "DELETE FROM module where mid = $1";
+const addElective = "Insert INTO elective (eid,pid,mcode,ename,specilization) Values($1, $2, $3, $4, $5)";
+const deleteElective = "DELETE From elective where mcode = $1";
 // const getStudents = "SELECT * FROM student";
 // const getStudentById = "SELECT * FROM student WHERE ID = $1";
 const checkEmailExists = "SELECT COUNT(*) FROM staff WHERE email = $1";
@@ -51,5 +55,9 @@ module.exports = {
     addPL,
     removePL,
     checkLogin,
+    addModule,
+    deleteModule,
+    addElective,
+    deleteElective,
 
 }
