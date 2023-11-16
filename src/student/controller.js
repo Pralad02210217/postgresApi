@@ -9,6 +9,12 @@ const getDepartment = (req, res) =>{
         res.status(200).json(results.rows);
     })
 }
+const getNotifications = (req, res) =>{
+    pool.query(queries.notificaitons, (error, results) =>{
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    })
+}
 
 const getDepartmentById = (req, res) => {
     const id = req.params.id;
@@ -16,6 +22,14 @@ const getDepartmentById = (req, res) => {
         if (error) throw error;
         res.status(200).json(results.rows);
     });
+}
+const addNotification = (req, res) =>{
+    const {notified} = req.body[0];
+    console.log(notified)
+    pool.query(queries.addNotification, [notified], (error, results)=>{
+        if (error) throw error;
+        res.status(201).json({message:"Notification Added Successfully" });
+    })
 }
 const getFullHodById = (req, res) => {
     const id = req.params.id;
@@ -447,5 +461,7 @@ module.exports = {
     removeElective,
     addLogin,
     getCurrentUser,
+    getNotifications,
+    addNotification,
 
 }

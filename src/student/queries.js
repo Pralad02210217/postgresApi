@@ -30,6 +30,8 @@ const currentUser = "SELECT * FROM login ORDER BY user_id DESC LIMIT 1;"
 // const getStudentById = "SELECT * FROM student WHERE ID = $1";
 const checkEmailExists = "SELECT COUNT(*) FROM staff WHERE email = $1";
 const addLogin = "INSERT into login (username) Values($1)";
+const notificaitons = "SELECT * FROM notification";
+const addNotification = "INSERT into notification (notified) Values($1)";
 // const addStudent = "INSERT INTO student (name,email, dob) VALUES($1, $2, $3)";
 // const removeStudent = "DELETE FROM student WHERE ID = $1";
 // const updateStudent = "UPDATE student SET name = $1 WHERE id = $2";
@@ -63,5 +65,7 @@ module.exports = {
     deleteElective,
     addLogin,
     currentUser,
+    notificaitons,
+    addNotification,
 
 }
